@@ -33,7 +33,8 @@ const runAmabot = async () => {
   let availabilityText = await page.evaluate(getElementTextContent, availabilityElement)
   while (
     !availabilityText.trim().toLowerCase().includes("in stock")
-    && !availabilityText.trim().toLowerCase().includes("available to ship")
+    && !availabilityText.trim().toLowerCase().includes("to ship")
+    || availabilityText.trim().toLowerCase().includes('unavailable')
     ) {
     await sleep(5000)
     await page.reload({ waitUntil: 'domcontentloaded' })

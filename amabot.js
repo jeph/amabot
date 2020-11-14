@@ -1,7 +1,7 @@
 import puppeteer from 'puppeteer'
 
-const productId = ''
-const priceYoureWillingToPay = 0
+const productId = '' // ex B0815Y8J9N
+const priceYoureWillingToPay = 0 // Number ex. 849.99
 const email = ''
 const password = ''
 
@@ -27,16 +27,17 @@ const runAmabot = async () => {
   await page.goto(
     `https://www.amazon.com/dp/${productId}`,
     { waitUntil: 'domcontentloaded' }
-  ) //B0815Y8J9N
+  )
   await page.waitForSelector('#availability')
   let availabilityElement = await page.$('#availability')
   let availabilityText = await page.evaluate(getElementTextContent, availabilityElement)
   while (
-    !availabilityText.trim().toLowerCase().includes("in stock")
-    && !availabilityText.trim().toLowerCase().includes("to ship")
+    !availabilityText.trim().toLowerCase().includes('in stock')
+    && !availabilityText.trim().toLowerCase().includes('to ship')
     || availabilityText.trim().toLowerCase().includes('unavailable')
     ) {
     await sleep(5000)
+    await page.setCacheEnabled(false)
     await page.reload({ waitUntil: 'domcontentloaded' })
     await page.waitForSelector('#availability')
     availabilityElement = await page.$("#availability")
@@ -44,7 +45,7 @@ const runAmabot = async () => {
     console.log('Not available :(')
   }
   console.log('Available :D')
-  const priceElement = await page.$("#price_inside_buybox")
+  const priceElement = await page.$('#price_inside_buybox')
   const priceText = await page.evaluate(getElementTextContent, priceElement)
   const price = priceText.trim().substring(1)
   if (Number(price) <= priceYoureWillingToPay) {

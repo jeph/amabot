@@ -1,0 +1,17 @@
+{
+  "scripts": {
+    "start": "babel-node amabot.js"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "puppeteer": "^5.4.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.6",
+    "@babel/cli": "^7.12.1",
+    "@babel/core": "^7.12.3",
+    "@babel/node": "^7.12.6",
+    "@babel/preset-env": "^7.12.1",
+    "@babel/register": "^7.12.1"
+  }
+}

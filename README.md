@@ -2,8 +2,8 @@
 ## Setup
 - Set your `Buy it Now` preferences on Amazon (the bot will use that option to buy)
 - Install Node.js and yarn
-- Enter your Amazon credentials, product ID, and price 
-you're willing to pay in `amabot.js`
+- Create a json file named `config.json` in the same directory as `amabot.js`. 
+Refer to `config-example.json` for a template format. 
 
 Install dependencies and run bot
 ```

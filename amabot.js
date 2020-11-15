@@ -1,10 +1,7 @@
 import puppeteer from 'puppeteer'
+import config from './config.json'
 
-const productId = '' // ex B0815Y8J9N
-const priceYoureWillingToPay = 0 // Number ex. 849.99
-const email = ''
-const password = ''
-
+const { productId, priceYoureWillingToPay, email, password } = config
 const sleep = ms => new Promise(resolve => setTimeout(resolve, ms))
 const getElementTextContent = element => element.textContent
 const retry = async (promiseFactory, retryCount) => {
